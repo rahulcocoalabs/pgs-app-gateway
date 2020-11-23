@@ -92,6 +92,10 @@ module.exports = {
 		{
 			path:"online-class",
 			port:"7022"
+		},
+		{
+			path:"favourite tutor",
+			port:"7023"
 		}
 
 
