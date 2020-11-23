@@ -94,7 +94,7 @@ module.exports = {
 			port:"7022"
 		},
 		{
-			path:"favourite tutor",
+			path:"tutor",
 			port:"7023"
 		}
 
