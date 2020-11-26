@@ -17,7 +17,7 @@ var proxy = httpProxy.createProxyServer({
         key:  fs.readFileSync('/etc/ssl/pgsedu.com/private.key', 'utf8'),
         cert:  fs.readFileSync('/etc/ssl/pgsedu.com/ca_bundle.crt', 'utf8')
       },
-      target:'https://localhost:' + PORT,
+      target:'http://localhost:' + PORT,
       secure: true
     // cs :  /etc/ssl/pgsedu.com/certificate.crt
     // SSLCertificateKeyFile /etc/ssl/pgsedu.com/private.key
@@ -58,7 +58,7 @@ while(i<ln) {
     path = config.path;
     if(!path) continue;
     port = config.port?config.port:""; 
-    server = !config.server?"https://localhost":config.server;
+    server = !config.server?"http://localhost":config.server;
     if(port)
         server = server+":"+port; 
     server = !config.remotePath?server:config.remotePath; 
