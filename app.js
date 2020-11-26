@@ -54,7 +54,7 @@ while(i<ln) {
     path = config.path;
     if(!path) continue;
     port = config.port?config.port:""; 
-    server = !config.server?"https://localhost":config.server;
+    server = !config.server?"http://localhost":config.server;
     if(port)
         server = server+":"+port; 
     server = !config.remotePath?server:config.remotePath; 
