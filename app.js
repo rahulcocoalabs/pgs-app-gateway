@@ -15,7 +15,7 @@ PORT = process.env.port?process.env.port:PORT;
 var proxy = httpProxy.createProxyServer({
     ssl: {
         key:  fs.readFileSync('/etc/ssl/pgsedu.com/private.key', 'utf8'),
-        cert:  fs.readFileSync('/etc/ssl/pgsedu.com/certificate.crt', 'utf8')
+        cert:  fs.readFileSync('/etc/ssl/pgsedu.com/ca_bundle.crt', 'utf8')
       },
       target:'https://localhost:' + PORT,
       secure: true
