@@ -2,13 +2,27 @@ var express  = require('express');
 var app      = express();
 var httpProxy = require('http-proxy');
 var consoleArguments = require('minimist');
+const fs = require("fs");
+
 var argv = consoleArguments(process.argv.slice(2));
-var proxy = httpProxy.createProxyServer();
+// ca: fs.readFileSync(path.resolve(__dirname, SSL_PATH, 'gd_bundle-g2-g1.crt')),
+// 		key: fs.readFileSync(path.resolve(__dirname, SSL_PATH, 'mydomain.key'))
+
 var CONFIG = require('./config.js');
 var PORT = CONFIG.port?CONFIG.port:8081;
 PORT = argv['port']?argv['port']:PORT; 
 PORT = process.env.port?process.env.port:PORT; 
-
+var proxy = httpProxy.createProxyServer({
+    ssl: {
+        key:  fs.readFileSync('/etc/ssl/pgsedu.com/private.key', 'utf8'),
+        cert:  fs.readFileSync('/etc/ssl/pgsedu.com/certificate.crt', 'utf8')
+      },
+    //   target:'https://localhost:' + PORT,
+      secure: true
+    // cs :  /etc/ssl/pgsedu.com/certificate.crt
+    // SSLCertificateKeyFile /etc/ssl/pgsedu.com/private.key
+    // SSLCertificateChainFile /etc/ssl/pgsedu.com/ca_bundle.crt
+});
 var path = null;
 var port = null;
 var configs = CONFIG.routes;
@@ -43,7 +57,7 @@ while(i<ln) {
     path = config.path;
     if(!path) continue;
     port = config.port?config.port:""; 
-    server = !config.server?"http://localhost":config.server;
+    server = !config.server?"https://localhost":config.server;
     if(port)
         server = server+":"+port; 
     server = !config.remotePath?server:config.remotePath; 
