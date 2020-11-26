@@ -1,7 +1,11 @@
 var express  = require('express');
+var https = require('https');
+const fs = require('fs');
+
 var app      = express();
 var httpProxy = require('http-proxy');
 var consoleArguments = require('minimist');
+
 var argv = consoleArguments(process.argv.slice(2));
 var proxy = httpProxy.createProxyServer();
 var CONFIG = require('./config.js');
@@ -16,6 +20,13 @@ if(!configs) {
     console.error("No configuration found");
     process.exit(0);
 }
+
+var sslOptions = {
+    key: fs.readFileSync('/etc/ssl/pgsedu.com/private.key'),
+    cert: fs.readFileSync('/etc/ssl/pgsedu.com/certificate.crt'),
+    ca: fs.readFileSync('/etc/ssl/pgsedu.com/ca_bundle.crt')
+  };
+  
 
 
 
@@ -43,7 +54,7 @@ while(i<ln) {
     path = config.path;
     if(!path) continue;
     port = config.port?config.port:""; 
-    server = !config.server?"http://localhost":config.server;
+    server = !config.server?"https://localhost":config.server;
     if(port)
         server = server+":"+port; 
     server = !config.remotePath?server:config.remotePath; 
@@ -54,5 +65,6 @@ while(i<ln) {
     i++;
 } 
 
+var server = https.createServer(sslOptions, app);
 
-app.listen(PORT);
+server.listen(PORT);
