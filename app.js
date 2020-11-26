@@ -23,7 +23,7 @@ var proxy = httpProxy.createProxyServer({
     // SSLCertificateKeyFile /etc/ssl/pgsedu.com/private.key
     // SSLCertificateChainFile /etc/ssl/pgsedu.com/ca_bundle.crt
 });
-proxy.listen(443);
+// proxy.listen(443);
 var path = null;
 var port = null;
 var configs = CONFIG.routes;
