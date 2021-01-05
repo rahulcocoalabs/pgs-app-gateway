@@ -54,5 +54,5 @@ while(i<ln) {
     i++;
 } 
 
-
+console.log("port is",PORT)
 app.listen(PORT);
