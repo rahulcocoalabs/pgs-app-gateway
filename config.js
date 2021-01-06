@@ -204,7 +204,12 @@ module.exports = {
 		{
 			path:"tutor",
 			port:"7023"
+		},
+		{
+			path:"test",
+			port:"7024"
 		}
+
 
 
 	]
