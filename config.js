@@ -206,7 +206,7 @@ module.exports = {
 			port:"7023"
 		},
 		{
-			path:"test",
+			path:"trial",
 			port:"7024"
 		}
 
