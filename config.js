@@ -208,6 +208,10 @@ module.exports = {
 		{
 			path:"trial",
 			port:"7024"
+		},
+		{
+			path:"payment",
+			port:"7025"
 		}
 
 
