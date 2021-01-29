@@ -212,6 +212,10 @@ module.exports = {
 		{
 			path:"payment",
 			port:"7025"
+		},
+		{
+			path:"alumni",
+			port:"7026"
 		}
 
 
