@@ -216,6 +216,10 @@ module.exports = {
 		{
 			path:"alumni",
 			port:"7026"
+		},
+		{
+			path:"offline-class",
+			port:"7027"
 		}
 
 
