@@ -220,6 +220,10 @@ module.exports = {
 		{
 			path:"offline-class",
 			port:"7027"
+		},
+		{
+			path:"queries",
+			port:"7028"
 		}
 
 
